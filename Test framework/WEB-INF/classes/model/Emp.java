@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import etu1869.framework.*;
+import etu1815.framework.*;
 import annotation.Auth;
 import annotation.Scope;
 import annotation.SessionConfig;
