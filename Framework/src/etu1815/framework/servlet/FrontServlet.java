@@ -1,11 +1,11 @@
-package etu1869.framework.servlet;
+package etu1815.framework.servlet;
 
 import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.MultipartConfig;
 import helper_classes.*;
-import etu1869.framework.*;
+import etu1815.framework.*;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;

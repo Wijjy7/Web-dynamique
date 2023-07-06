@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Vector;
 import annotation.*;
 
-import etu1869.framework.Mapping;
+import etu1815.framework.Mapping;
 
 
 public class PackageClasse {

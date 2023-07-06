@@ -1,6 +1,6 @@
 package helper_classes;
 
-import etu1869.framework.*;
+import etu1815.framework.*;
 import java.util.*;
 
 import annotation.SessionConfig;

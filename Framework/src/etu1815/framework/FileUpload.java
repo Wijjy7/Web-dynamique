@@ -1,4 +1,4 @@
-package etu1869.framework;
+package etu1815.framework;
 
 public class FileUpload {
     private String name;
