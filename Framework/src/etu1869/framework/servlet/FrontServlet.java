@@ -6,14 +6,10 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.MultipartConfig;
 import helper_classes.*;
 import etu1869.framework.*;
-
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
 import annotation.Auth;
-import annotation.SessionConfig;
 
 @MultipartConfig
 public class FrontServlet extends HttpServlet {
@@ -75,14 +71,7 @@ public class FrontServlet extends HttpServlet {
                 
                 Modelview view = (Modelview) value;
                 this.setDatas(req, view);
-                HashMap<String, Object> session = null;
-                if (sessionPresent(obj)!= "") {
-                    session = (HashMap<String, Object>) obj.getClass().getMethod("get"+Util.capitalize(sessionPresent(obj))).invoke(obj);
-                    
-                } else {
-                    session = view.getSession();
-                }
-                this.setSession(req, session);
+                this.setSession(req, view.getSession());
                 displaySession(req);
                 if (checkAuth(mapping, req)) {
                     if (checkProfil(req, stringMatching(cls.getDeclaredMethods(), mapping.getMethod()))) {
@@ -107,19 +96,6 @@ public class FrontServlet extends HttpServlet {
             out.println("The url `"+parameter_url+"` is not defined");
         }
     }
-
-    private String sessionPresent(Object obj) {
-        String toReturn = "";
-        
-        Field[] fields = obj.getClass().getDeclaredFields();
-        for (Field field : fields) {
-            if (field.isAnnotationPresent(SessionConfig.class)) {
-                toReturn = field.getName();
-            }
-        }
-        return toReturn;
-    }
-
 
     public void displaySession(HttpServletRequest req) {
         HttpSession session = req.getSession();

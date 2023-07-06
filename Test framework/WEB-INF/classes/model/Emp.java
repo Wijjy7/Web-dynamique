@@ -1,12 +1,10 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import etu1869.framework.*;
 import annotation.Auth;
 import annotation.Scope;
-import annotation.SessionConfig;
 import annotation.Url;
 
 @Scope(types = "singleton")
@@ -16,9 +14,6 @@ public class Emp {
     String name;
 
     FileUpload badge;
-
-    @SessionConfig
-    HashMap<String, Object> session;
 
     public Emp () {
 
@@ -66,11 +61,9 @@ public class Emp {
     @Url(value = "connect.do", param_name = "user,mdp")
     public Modelview connect(String user, String mdp){
         Modelview mv = new Modelview("connect.jsp");
-        if (user.equals("admin")&&mdp.equals("useradmin")) {
-            mv.setAttributeSession("isConnected", true,session);
-            mv.setAttributeSession("profil", "admin",session);
-            mv.setAttributeSession("message", "If you see this, you getted the session value",session);
-            mv.setAttributeSession("obj", new Test(), session);
+        if (user.equals("admin")&& mdp.equals("useradmin")) {
+            mv.setAttributeSession("isConnected", true);
+            mv.setAttributeSession("profil", "admin");
         } else {
             mv.setView("error.jsp");
         }
@@ -81,8 +74,6 @@ public class Emp {
     @Url(value = "admin.do")
     public Modelview admin() {
         Modelview mv = new Modelview("admin.jsp");
-        mv.addItem("message", session.get("message"));
-        mv.addItem("obj", session.get("obj"));
         return mv;
     }
     
@@ -109,17 +100,6 @@ public class Emp {
     public void setBadge(FileUpload badge) {
         this.badge = badge;
     }
-
-
-    public HashMap<String, Object> getSession() {
-        return session;
-    }
-
-
-    public void setSession(HashMap<String, Object> session) {
-        this.session = session;
-    }
-    
     
     
 }
